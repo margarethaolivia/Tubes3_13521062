@@ -63,8 +63,8 @@ function App() {
           <Link to="/">
             <h1 className="font-bold text-lg mb-4">ChatDOA</h1>
           </Link>
-          <nav className="h-full overflow-auto">
-            <ul className="flex flex-col space-y-4 pr-4 pb-8">
+          <nav className="h-3/4 overflow-auto">
+            <ul className="flex flex-col h-full space-y-4 pr-4 pb-8">
               {tabs.map((tab) => (
                 <li
                   key={tab.id}
@@ -84,6 +84,16 @@ function App() {
               ))}
             </ul>
           </nav>
+          <div className="flex flex-col items-start mx-3 mt-5">
+            <label className="inline-flex items-center m-2">
+              <input type="radio" className="form-radio" name="radio-option" />
+              <span className="ml-2">KMP</span>
+            </label>
+            <label className="inline-flex items-center m-2">
+              <input type="radio" className="form-radio" name="radio-option" />
+              <span className="ml-2">BM</span>
+            </label>
+          </div>
         </div>
         <main className="flex-1 p-4 ml-64 h-screen overflow-y-hidden">
           <Routes>
