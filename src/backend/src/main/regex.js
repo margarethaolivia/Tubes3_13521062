@@ -2,6 +2,7 @@
 /*   Do the pattern-matching to the query from user using regular expression     */
 
 import {getDayName} from '../features/date.js'
+import { evaluate } from '../features/calculator.js'
 
 function handleQuery(query) {
     if (/\s*\d{1,2}\s*\/\s*\d{1,2}\s*\/\s*\d{1,4}\s*(\?)*\s*/.test(query) ||
@@ -11,7 +12,7 @@ function handleQuery(query) {
     }
     else if (/[\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)([\s\(\)]*[\+\-\*/\^][\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)[\s\(\)]*)*\?*\s*/g.test(query)) {
         // Calculate the mathematical expression
-        console.log("mungkin 7")
+        return evaluate(query)
     }
     else if (/\s*tambahkan\s+pertanyaan\s+\S+\s+dengan\s+jawaban\s+\S+\s*/i.test(query)) {
         // Add the question and its corresponding answer to database
