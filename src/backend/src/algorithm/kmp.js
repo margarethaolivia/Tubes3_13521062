@@ -44,7 +44,7 @@ function createBorderList(pattern) {
 
 // matchKMP function
 // Return the index where the pattern starts in the text, return -1 if pattern does not exist in text
-function matchKMP(text, pattern) {
+export function matchKMP(text, pattern) {
     // Declare and initialize needed variable
     var index = -1                                  // The index where the pattern starts
     var borderList = createBorderList(pattern)      // The border list for all possible mismatch 
