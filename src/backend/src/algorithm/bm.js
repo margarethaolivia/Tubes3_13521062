@@ -3,6 +3,8 @@
 
 
 function bmMatch(text, pattern) {
+    text.toLowerCase()                      // Convert text to lowercase
+    pattern.toLowerCase()                   // Convert pattern to lowercase
     var lastOccur = lastOccurBuilder(pattern)
     var lengthText = text.length
     var lengthPattern = pattern.length
