@@ -6,33 +6,39 @@ function App() {
   const [chats, setChats] = useState([]);
   const [tabs, setTabs] = useState([]);
   const [send, setSend] = useState(false);
+  const [newTab, setNewTab] = useState(false);
   const [activeTab, setActiveTab] = useState("");
-  let maxChatId = 0;
 
   // Fetching message from backend on mount
   useEffect(() => {
     fetch("http://localhost:4000/chat")
       .then((res) => res.json())
       .then((data) => {
-        const minChatId = Math.min(...data.map((item) => item.chat_id));
-        const maxChatId = Math.max(...data.map((item) => item.chat_id));
-
-        const tabs = [];
-        for (let i = minChatId; i <= maxChatId; i++) {
-          tabs.push({ id: i.toString(), title: `Tab ${i}` });
-        }
-
         setChats(data);
-        setTabs(tabs);
       });
   }, [send]);
 
+  useEffect(() => {
+    fetch("http://localhost:4000/tab")
+      .then((res) => res.json())
+      .then((data) => {
+        const tabs = data.map((tab) => ({
+          id: tab.tab_id.toString(),
+          title: `Tab ${tab.tab_id}`,
+        }));
+        setTabs(tabs);
+      });
+  }, [newTab]);
+
   const handleNewTab = async (e) => {
     e.preventDefault();
-    setActiveTab(...tabs, {
-      id: maxChatId.toString(),
-      title: `Tab ${maxChatId}`,
-    });
+    try {
+      const response = await axios.post("http://localhost:4000/tab");
+      console.log(response.data);
+      setNewTab(!newTab);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
