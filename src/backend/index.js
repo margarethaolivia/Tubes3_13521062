@@ -4,8 +4,10 @@ const app = express();
 const cors = require("cors");
 let bodyParser = require("body-parser");
 require("dotenv").config();
+
 const historyRoute = require("../backend/routes/history.route");
 const qnaRoute = require("../backend/routes/qna.route");
+const tabRoute = require("../backend/routes/tab.route");
 
 // middleware
 const corsOptions = {
@@ -38,6 +40,7 @@ app.use(
 );
 app.use("/chat", historyRoute);
 app.use("/qna", qnaRoute);
+app.use("/tab", tabRoute);
 
 // route
 app.get("/", (req, res) => {
