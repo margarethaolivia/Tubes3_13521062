@@ -34,7 +34,7 @@ function createBorderList(pattern) {
     var resultList = []                     // Border value list
 
     // Fill the result list for all possible k value beside 0
-    for (var k = 1; k < pattern.length-1; k++) {
+    for (var k = 0; k < pattern.length-1; k++) {
         resultList.push(findBorder(pattern, k))
     }
 
@@ -44,12 +44,13 @@ function createBorderList(pattern) {
 
 // matchKMP function
 // Return the index where the pattern starts in the text, return -1 if pattern does not exist in text
-export function matchKMP(text, pattern) {
+function matchKMP(text, pattern) {
     // Declare and initialize needed variable
     text = text.toLowerCase()                       // Convert text to lowercase
     pattern = pattern.toLowerCase()                 // Convert pattern to lowercase
     var index = -1                                  // The index where the pattern starts
     var borderList = createBorderList(pattern)      // The border list for all possible mismatch 
+    
     // Begin searching for the index where pattern starts
     var found = false                               // Boolean flag
     var i = 0                                       // Index pointing at character in text
@@ -77,3 +78,5 @@ export function matchKMP(text, pattern) {
     // Return the index
     return index
 }
+
+module.exports = {matchKMP}

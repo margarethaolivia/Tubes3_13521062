@@ -77,7 +77,7 @@ function applyOperator(operand1, operand2, operator) {
 
 // evaluate function
 // Return the value of evaluation expression from user query. Return exception string if expression not valid or cannot do the calculation
-export function evaluate(expression) {
+function evaluate(expression) {
     // Declare and initialize all needed variable
     var opStack = [], valStack = [], i = 0,  factor = 1, end = false, openParen = false, operandJustNow = false, negative = false
     var token, operator, operand1, operand2, result, len
@@ -213,3 +213,5 @@ export function evaluate(expression) {
         return err
     }
 }
+
+module.exports = {evaluate}

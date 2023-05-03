@@ -1,10 +1,10 @@
 /* ------------------------------- File : bm.js ------------------------------- */
 /*            Do the pattern-matching using Boyer-Moore algorithm               */
 
-
-function bmMatch(text, pattern) {
+function matchBM(text, pattern) {
     text.toLowerCase()                      // Convert text to lowercase
     pattern.toLowerCase()                   // Convert pattern to lowercase
+    
     var lastOccur = lastOccurBuilder(pattern)
     var lengthText = text.length
     var lengthPattern = pattern.length
@@ -50,3 +50,5 @@ function lastOccurBuilder(pattern) {
 
     return lastOccur
 }
+
+module.exports = {matchBM}

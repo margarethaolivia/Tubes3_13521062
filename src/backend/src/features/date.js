@@ -37,7 +37,7 @@ function parseDate(query) {
 
 // getDayName function
 // Return the string corresponding to asked date's day name if date is valid, return error string if day not valid
-export function getDayName(query) {
+function getDayName(query) {
     // Get the date value from parseDate function
     const {day, month, year} = parseDate(query)
 
@@ -53,3 +53,5 @@ export function getDayName(query) {
         return "Mohon masukkan tanggal yang valid"
     }
 }
+
+module.exports = {getDayName}
