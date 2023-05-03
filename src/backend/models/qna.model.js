@@ -4,9 +4,12 @@ let qnaSchema = new Schema(
   {
     question: {
       type: String,
+      unique : true,
+      required : true,
     },
     answer: {
       type: String,
+      required : true,
     },
   },
   {

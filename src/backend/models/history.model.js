@@ -4,6 +4,7 @@ let historySchema = new Schema(
   {
     chat_id: {
       type: Number,
+      required : true
     },
     question: {
       type: String,
