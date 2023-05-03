@@ -2,7 +2,15 @@
 /*          Calculates the Levenshtein distance between two strings.          */
 
 // source https://blog.paperspace.com/measuring-text-similarity-using-levenshtein-distance/ 
+// Return the similarity between str1 and str2
 function levenshteinDistance(str1, str2) {
+    if (str1 == "" && str2 == "") {
+        return 0.0
+    }
+
+    str1 = str1.toLowerCase()
+    str2 = str2.toLowerCase()
+
     // initialize matriks 0
     const matrix = Array(str1.length + 1).fill().map(() => Array(str2.length + 1).fill(0));
     
@@ -25,6 +33,8 @@ function levenshteinDistance(str1, str2) {
         }
     }
 
-    // return Levenshtein distance (bottom-right corner of matrix)
-    return matrix[str1.length][str2.length];
+    // return similarity by Levenshtein distance (bottom-right corner of matrix)
+    return (Math.max(str1.length, str2.length) - matrix[str1.length][str2.length]) / Math.max(str1.length, str2.length);
 }
+
+module.exports = {levenshteinDistance}
