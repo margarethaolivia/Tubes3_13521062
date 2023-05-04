@@ -1,5 +1,6 @@
 import { useState, useEffect, React } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   const [send, setSend] = useState(false);
   const [newTab, setNewTab] = useState(false);
   const [activeTab, setActiveTab] = useState("");
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState("KMP");
 
   // Fetching message from backend on mount
   useEffect(() => {
@@ -30,11 +32,32 @@ function App() {
       });
   }, [newTab]);
 
+  const handleOptionChange = (element) => {
+    setSelectedAlgorithm(element.target.value);
+  };
+
   const handleNewTab = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:4000/tab");
       console.log(response.data);
+      setNewTab(!newTab);
+      setSend(!send);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleDeleteTab = async (id) => {
+    try {
+      const responseTab = await axios.delete(
+        `http://localhost:4000/tab/delete/${id}`
+      );
+      const responseHistory = await axios.delete(
+        `http://localhost:4000/chat/delete/${id}`
+      );
+      console.log(responseTab.data);
+      console.log(responseHistory.data);
       setNewTab(!newTab);
     } catch (error) {
       console.error(error.message);
@@ -64,14 +87,22 @@ function App() {
                     activeTab === tab.id ? "bg-gray-900" : "bg-gray-800"
                   } px-3 py-2 rounded`}
                 >
-                  <Link
-                    to={`/${tab.id}`}
-                    className="flex items-center space-x-2"
-                    onClick={() => setActiveTab(tab.id)}
-                  >
-                    <i className={tab.icon}></i>
-                    <span>{tab.title}</span>
-                  </Link>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      to={`/${tab.id}`}
+                      className="flex items-center"
+                      onClick={() => setActiveTab(tab.id)}
+                    >
+                      <i className={tab.icon}></i>
+                      <span className="pr-6">{tab.title}</span>
+                    </Link>
+                    <button
+                      onClick={() => handleDeleteTab(tab.id)}
+                      className="inline-block"
+                    >
+                      <FaTrash size={12} />
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -82,19 +113,28 @@ function App() {
                 type="radio"
                 className="form-radio"
                 name="radio-option"
-                checked
+                value="KMP"
+                checked={selectedAlgorithm === "KMP"}
+                onChange={handleOptionChange}
               />
               <span className="ml-2">KMP</span>
             </label>
             <label className="inline-flex items-center m-2">
-              <input type="radio" className="form-radio" name="radio-option" />
+              <input
+                type="radio"
+                className="form-radio"
+                name="radio-option"
+                value="BM"
+                checked={selectedAlgorithm === "BM"}
+                onChange={handleOptionChange}
+              />
               <span className="ml-2">BM</span>
             </label>
           </div>
         </div>
         <main className="flex-1 p-4 ml-64 h-screen overflow-y-hidden">
           <Routes>
-            <Route path="/" element={<h2>Welcome to ChatDOA</h2>} />
+            <Route path="*" element={<h2>Welcome to ChatDOA</h2>} />
             {tabs.map((tab) => (
               <Route
                 key={tab.id}
@@ -140,10 +180,8 @@ function ChatWindow({ id, messages, send, setSend }) {
       console.log(response.data);
       console.log(id);
       setSend(!send);
-      // Update UI or display success message to the user
     } catch (error) {
       console.error(error.message);
-      // Update UI or display error message to the user
     }
   };
 
