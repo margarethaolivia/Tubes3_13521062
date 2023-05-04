@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 let bodyParser = require("body-parser");
-const { handleQuery} = require("./src/algorithm/regex")
 require("dotenv").config();
 
 const historyRoute = require("../backend/routes/history.route");
@@ -19,7 +18,7 @@ app.use(cors(corsOptions));
 
 // connect MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, {autoIndex : true})
+  .connect(process.env.MONGODB_URI, { autoIndex: true })
   .then((x) => {
     const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
@@ -47,6 +46,3 @@ app.use("/tab", tabRoute);
 app.get("/", (req, res) => {
   res.status(201).json({ message: "Connected to Backend!" });
 });
-
-// Call this to get answer
-// handleQuery("Apa Ibukota Indo; hari apa 23/05/2023", 1).then(response => console.log(response))

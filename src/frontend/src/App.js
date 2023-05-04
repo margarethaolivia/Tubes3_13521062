@@ -9,7 +9,7 @@ function App() {
   const [send, setSend] = useState(false);
   const [newTab, setNewTab] = useState(false);
   const [activeTab, setActiveTab] = useState("");
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState("KMP");
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState(1);
 
   // Fetching message from backend on mount
   useEffect(() => {
@@ -33,7 +33,7 @@ function App() {
   }, [newTab]);
 
   const handleOptionChange = (element) => {
-    setSelectedAlgorithm(element.target.value);
+    setSelectedAlgorithm(parseInt(element.target.value));
   };
 
   const handleNewTab = async (e) => {
@@ -113,8 +113,8 @@ function App() {
                 type="radio"
                 className="form-radio"
                 name="radio-option"
-                value="KMP"
-                checked={selectedAlgorithm === "KMP"}
+                value="1"
+                checked={selectedAlgorithm === 1}
                 onChange={handleOptionChange}
               />
               <span className="ml-2">KMP</span>
@@ -124,8 +124,8 @@ function App() {
                 type="radio"
                 className="form-radio"
                 name="radio-option"
-                value="BM"
-                checked={selectedAlgorithm === "BM"}
+                value="2"
+                checked={selectedAlgorithm === 2}
                 onChange={handleOptionChange}
               />
               <span className="ml-2">BM</span>
@@ -148,6 +148,7 @@ function App() {
                     )}
                     send={send}
                     setSend={setSend}
+                    selectedAlgorithm={selectedAlgorithm}
                   />
                 }
               />
@@ -159,7 +160,7 @@ function App() {
   );
 }
 
-function ChatWindow({ id, messages, send, setSend }) {
+function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
   const [question, setQuestion] = useState("");
 
   useEffect(() => {
@@ -175,10 +176,9 @@ function ChatWindow({ id, messages, send, setSend }) {
     try {
       const response = await axios.post(`http://localhost:4000/chat/${id}`, {
         question: question,
-        answer: "jawaban default",
+        algorithm: selectedAlgorithm,
       });
       console.log(response.data);
-      console.log(id);
       setSend(!send);
     } catch (error) {
       console.error(error.message);
