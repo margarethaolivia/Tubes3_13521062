@@ -13,7 +13,7 @@ async function processQuery(query, algorithmCode) {
         // Search for the name of the day from the asked date
         return getDayName(query)
     }
-else if (/[\s\(\)]*(\-|\s*)(\d+|(\d+\.\d+))([\s\(\)]*[\+\-\*/\^][\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)[\s\(\)]*)*\?*\s*/.test(query) && !/[^0-9\?\+\-\*/\^\(\)\s]/.test(query)) {
+    else if (/[\s\(\)]*(\-|\s*)(\d+|(\d+\.\d+))([\s\(\)]*[\+\-\*/\^][\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)[\s\(\)]*)*\?*\s*/.test(query) && !/[^0-9\?\+\-\*/\^\(\)\s\.]/.test(query)) {
         // Calculate the mathematical expression
         return evaluate(query)
     }
