@@ -39,4 +39,17 @@ router.route("/:chat_id").get(async (req, res, next) => {
   }
 });
 
+// DELETE chat history (1 tab)
+router.route("/delete/:chat_id").delete(async (req, res, next) => {
+  try {
+    const chat_id = req.params.chat_id;
+    const data = await historySchema.deleteMany({ chat_id });
+    res.status(200).json({
+      msg: `${data.deletedCount} chat history records deleted.`,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
