@@ -105,7 +105,7 @@ function evaluate(expression) {
 
                 // If the operator is - preceded by no operand, the next operand will be negative
                 if (!operandJustNow && token == '-') {
-                    factor = -1
+                    factor *= -1
                 }
                 else {
                     // If the op stack is empty, push the operator no matter what
@@ -206,7 +206,7 @@ function evaluate(expression) {
         
         // Return the result
         result = valStack.pop()
-        return result
+        return "Hasilnya adalah " + result
     }
     catch (err) {
         // Catch exception and return it as exception string

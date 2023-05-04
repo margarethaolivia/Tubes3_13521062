@@ -13,9 +13,9 @@ async function processQuery(query, algorithmCode) {
         // Search for the name of the day from the asked date
         return getDayName(query)
     }
-    else if (/[\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)([\s\(\)]*[\+\-\*/\^][\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)[\s\(\)]*)*\?*\s*/g.test(query)) {
+else if (/[\s\(\)]*(\-|\s*)(\d+|(\d+\.\d+))([\s\(\)]*[\+\-\*/\^][\s\(\)]*(\-|\s*)(\d+|\d+\.\d+)[\s\(\)]*)*\?*\s*/.test(query) && !/[^0-9\?\+\-\*/\^\(\)\s]/.test(query)) {
         // Calculate the mathematical expression
-        return "Hasilnya adalah " + evaluate(query)
+        return evaluate(query)
     }
     else if (/\s*tambahkan\s+pertanyaan\s+[A-Za-z0-9\s?]*dengan jawaban[A-Za-z0-9\s]*/i.test(query)) {
         // Add the question and its corresponding answer to database
