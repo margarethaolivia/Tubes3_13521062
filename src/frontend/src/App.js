@@ -69,7 +69,12 @@ function App() {
       <div className="flex">
         <div className="fixed h-full bg-gray-800 text-white p-6">
           <Link to="/">
-            <h1 className="font-bold text-lg mb-4">ChatDOA</h1>
+            <h1
+              className="px-3 py-2 rounded font-bold text-lg mb-4"
+              onClick={() => setActiveTab("ChatDOA")}
+            >
+              ChatDOA
+            </h1>
           </Link>
           <form className="flex items-center mt-auto" onSubmit={handleNewTab}>
             <div className="flex flex-col items-start pb-4">
