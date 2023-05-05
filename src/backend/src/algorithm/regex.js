@@ -8,8 +8,7 @@ const {deleteQuery} = require("../features/delete")
 const {findQuery} = require("../features/find")
 
 async function processQuery(query, algorithmCode) { 
-    if (/^\d{1,2}\s*\/\s*\d{1,2}\s*\/\s*\d{1,4}\s*(\?)*\s*/.test(query) ||
-        /^hari\s+apa\s+\d{1,2}\s*\/\s*\d{1,2}\s*\/\s*\d{1,4}\s*(\?)*\s*/i.test(query)) {
+    if (/\s*\d{1,2}\s*\/\s*\d{1,2}\s*\/\s*\d{1,4}\s*(\?)*\s*/.test(query)) {
         // Search for the name of the day from the asked date
         return getDayName(query)
     }
@@ -17,11 +16,11 @@ async function processQuery(query, algorithmCode) {
         // Calculate the mathematical expression
         return evaluate(query)
     }
-    else if (/^tambahkan\s+pertanyaan\s+[A-Za-z0-9\s?]*dengan jawaban[A-Za-z0-9\s]*/i.test(query)) {
+    else if (/\s*tambahkan\s+pertanyaan\s+[A-Za-z0-9\s?]*dengan jawaban[A-Za-z0-9\s]*/i.test(query)) {
         // Add the question and its corresponding answer to database
         return await addQuery(query, algorithmCode)
     }
-    else if (/^hapus\s+pertanyaan[A-Za-z0-9\s?]*/i.test(query)) {
+    else if (/\s*hapus\s+pertanyaan[A-Za-z0-9\s?]*/i.test(query)) {
         // Delete the question and its corresponding answer from database
         return await deleteQuery(query, algorithmCode)
     }
