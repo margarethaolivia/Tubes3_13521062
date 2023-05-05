@@ -132,9 +132,9 @@ function App() {
             </label>
           </div>
         </div>
-        <main className="flex-1 p-4 ml-64 h-screen overflow-y-hidden">
+        <main className="flex-1 p-4 mr-6 ml-56 h-screen overflow-y-hidden">
           <Routes>
-            <Route path="*" element={<h2>Welcome to ChatDOA</h2>} />
+            <Route path="*" element={<WelcomePage />} />
             {tabs.map((tab) => (
               <Route
                 key={tab.id}
@@ -194,7 +194,9 @@ function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
               <p>{message.question}</p>
             </div>
             <div className="bg-gray-100 p-2 rounded-lg max-w-md self-start my-2">
-              <p>{message.answer}</p>
+              {message.answer.split("\n").map((line, index) => (
+                <p key={index}>{line}</p>
+              ))}
             </div>
           </>
         ))}
@@ -207,10 +209,42 @@ function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
           value={question}
           onChange={handleQuestionChange}
         />
-        <button className="bg-blue-500 hover:bg-blue-600 text-white rounded-r-lg px-4 py-2">
+        <button className="bg-gray-700 hover:bg-gray-800 text-white rounded-r-lg px-4 py-2">
           Send
         </button>
       </form>
+    </div>
+  );
+}
+
+function WelcomePage() {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-4xl font-bold text-center mb-8">ChatDOA</h1>
+      <Card>
+        <h2 className="text-xl font-bold mb-4">Features</h2>
+        <ul className="list-disc list-inside mb-4">
+          <li>Answering questions using KMP or BM algorithm</li>
+          <li>Multiple chat rooms or tabs</li>
+          <li>Has calculator and date features</li>
+        </ul>
+        <h2 className="text-xl font-bold mb-4">Algorithm</h2>
+        <p className="text-gray-700">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+          hendrerit tortor et finibus tincidunt. Cras eget libero euismod,
+          sodales dui vel, fermentum est. Vestibulum iaculis lobortis leo,
+          vestibulum ornare dolor ultrices vitae. Aenean et eleifend arcu. Nulla
+          elementum neque vel tincidunt pretium.
+        </p>
+      </Card>
+    </div>
+  );
+}
+
+function Card({ children }) {
+  return (
+    <div className="max-w-2xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="px-6 py-4">{children}</div>
     </div>
   );
 }
