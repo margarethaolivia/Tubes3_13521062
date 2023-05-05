@@ -4,14 +4,14 @@
 function lastOccurBuilder(pattern) {
     /* Return array storing index of last
     occurrence of each ASCII char in pattern. */
-    var last = new Array(256); // create an array with length 256
+    var last = new Array(256) // create an array with length 256
     for(let i=0; i < 256; i++) {
-        last[i] = -1; // initialize array
+        last[i] = -1 // initialize array
     }
     for (let i = 0; i < pattern.length; i++) {
-        last[pattern.charCodeAt(i)] = i; // use charCodeAt() to get ASCII value
+        last[pattern.charCodeAt(i)] = i // use charCodeAt() to get ASCII value
     }
-    return last;
+    return last
 }
 
 function matchBM(text, pattern) {
