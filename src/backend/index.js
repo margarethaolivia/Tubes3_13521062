@@ -5,9 +5,9 @@ const cors = require("cors");
 let bodyParser = require("body-parser");
 require("dotenv").config();
 
-const historyRoute = require("../backend/routes/history.route");
-const qnaRoute = require("../backend/routes/qna.route");
-const tabRoute = require("../backend/routes/tab.route");
+const historyRoute = require("./routes/history.route");
+const qnaRoute = require("./routes/qna.route");
+const tabRoute = require("./routes/tab.route");
 
 // middleware
 const corsOptions = {
