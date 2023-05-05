@@ -2,8 +2,8 @@
 /*            Do the pattern-matching using Boyer-Moore algorithm               */
 
 function matchBM(text, pattern) {
-    text.toLowerCase()                      // Convert text to lowercase
-    pattern.toLowerCase()                   // Convert pattern to lowercase
+    text = text.toLowerCase()                      // Convert text to lowercase
+    pattern = pattern.toLowerCase()                   // Convert pattern to lowercase
     
     var lastOccur = lastOccurBuilder(pattern)
     var lengthText = text.length
