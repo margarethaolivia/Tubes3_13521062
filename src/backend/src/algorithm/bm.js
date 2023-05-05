@@ -42,12 +42,13 @@ function matchBM(text, pattern) {
 }
 
 function lastOccurBuilder(pattern) {
-    /* Return array storing index of last
-    occurrence of each ASCII char in pattern. */
-    var last = new int[256] // 
-    for(let i=0; i < 256; i++) {last[i] = -1} // initialize array
-    for (let i = 0; i < pattern.length(); i++) {last[pattern.charAt(i)] = i}
-    return last;
+    var lastOccur = {}
+
+    for (var i = 0; i < pattern.length; i++) {
+        lastOccur[pattern[i]] = i
+    }
+
+    return lastOccur
 }
 
 module.exports = {matchBM}
