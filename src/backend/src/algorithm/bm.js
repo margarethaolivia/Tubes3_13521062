@@ -31,7 +31,7 @@ function matchBM(text, pattern) {
         }
         else {
             // character-jump technique
-            var lo = lastOccur[text[i]] || -1
+            var lo = lastOccur[text[i]]
             i = i + lengthPattern - Math.min(j, 1 + lo)
             j = lengthPattern - 1
         }
@@ -42,13 +42,16 @@ function matchBM(text, pattern) {
 }
 
 function lastOccurBuilder(pattern) {
-    var lastOccur = {}
-
-    for (var i = 0; i < pattern.length; i++) {
-        lastOccur[pattern[i]] = i
+    /* Return array storing index of last
+    occurrence of each ASCII char in pattern. */
+    var last = new Array(256); // create an array with length 256
+    for(let i=0; i < 256; i++) {
+        last[i] = -1; // initialize array
     }
-
-    return lastOccur
+    for (let i = 0; i < pattern.length; i++) {
+        last[pattern.charCodeAt(i)] = i; // use charCodeAt() to get ASCII value
+    }
+    return last;
 }
 
 module.exports = {matchBM}

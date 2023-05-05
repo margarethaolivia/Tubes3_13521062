@@ -229,17 +229,16 @@ function WelcomePage() {
       <Card>
         <h2 className="text-xl font-bold mb-4">Features</h2>
         <ul className="list-disc list-inside mb-4">
-          <li>Answering questions using KMP or BM algorithm</li>
-          <li>Multiple chat rooms or tabs</li>
+          <li>Answering questions using KMP or BM string matching algorithm</li>
+          <li>Add and delete question to database</li>
           <li>Has calculator and date features</li>
+          <li>Multiple chat rooms or tabs</li>
         </ul>
         <h2 className="text-xl font-bold mb-4">Algorithm</h2>
         <p className="text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          hendrerit tortor et finibus tincidunt. Cras eget libero euismod,
-          sodales dui vel, fermentum est. Vestibulum iaculis lobortis leo,
-          vestibulum ornare dolor ultrices vitae. Aenean et eleifend arcu. Nulla
-          elementum neque vel tincidunt pretium.
+          This chatbot majorly operate using the Knuth-Morris-Pratt algorithm,
+          Boyer-Moore algorithm, and regular expression to be able to give
+          you an appropriate answer to all of your question.
         </p>
       </Card>
     </div>

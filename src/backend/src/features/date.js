@@ -11,21 +11,25 @@ function parseDate(query) {
     var day = 0, month = 0, year = 0
     
     // Parse and get the value of day
-    while (query[index] != '/') {
+    while (/\d/.test(query[index])) {
         day = (day * 10) + parseInt(query[index], 10)
         index++
     }
-    index++
+    while (!/\d/.test(query[index])) {
+        index++
+    }
 
     // Parse and get the value of month
-    while (query[index] != '/') {
+    while (/\d/.test(query[index])) {
         month = (month * 10) + parseInt(query[index], 10)
         index++
     }
-    index++
+    while (!/\d/.test(query[index])) {
+        index++
+    }
 
     // Parse and get the value of year
-    while (/[0-9]/.test(query[index]) && index < query.length) {
+    while (/\d/.test(query[index])) {
         year = (year * 10) + parseInt(query[index], 10)
         index++
     }
@@ -40,6 +44,7 @@ function parseDate(query) {
 function getDayName(query) {
     // Get the date value from parseDate function
     const {day, month, year} = parseDate(query)
+    console.log(day, month, year)
 
     // Declare needed variable
     var dayNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
