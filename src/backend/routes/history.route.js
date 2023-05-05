@@ -16,7 +16,6 @@ router.route("/:chat_id").post(async (req, res, next) => {
         const question = req.body.question;
         const answer = response;
         const data = await historySchema.create({ chat_id, question, answer });
-        console.log(data);
         res.json(data);
       }
     );

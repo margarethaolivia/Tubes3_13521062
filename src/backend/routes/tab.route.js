@@ -18,7 +18,6 @@ router.route("/").post(async (req, res, next) => {
 
     // Create the document with the new tab_id
     const data = await tabSchema.create(req.body);
-    console.log(data);
     res.json(data);
   } catch (error) {
     next(error);
