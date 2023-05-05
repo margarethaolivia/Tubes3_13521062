@@ -42,7 +42,6 @@ function App() {
     e.preventDefault();
     try {
       const response = await axios.post(`${API_URL}/tab`);
-      console.log(response.data);
       setNewTab(!newTab);
       setSend(!send);
     } catch (error) {
@@ -56,8 +55,6 @@ function App() {
       const responseHistory = await axios.delete(
         `${API_URL}/chat/delete/${id}`
       );
-      console.log(responseTab.data);
-      console.log(responseHistory.data);
       setNewTab(!newTab);
     } catch (error) {
       console.error(error.message);
@@ -69,7 +66,12 @@ function App() {
       <div className="flex">
         <div className="fixed h-full bg-gray-800 text-white p-6">
           <Link to="/">
-            <h1 className="font-bold text-lg mb-4">ChatDOA</h1>
+            <h1
+              className="px-3 py-2 rounded font-bold text-lg mb-4"
+              onClick={() => setActiveTab("ChatDOA")}
+            >
+              ChatDOA
+            </h1>
           </Link>
           <form className="flex items-center mt-auto" onSubmit={handleNewTab}>
             <div className="flex flex-col items-start pb-4">
@@ -178,7 +180,6 @@ function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
         question: question,
         algorithm: selectedAlgorithm,
       });
-      console.log(response.data);
       setSend(!send);
     } catch (error) {
       console.error(error.message);
@@ -224,17 +225,16 @@ function WelcomePage() {
       <Card>
         <h2 className="text-xl font-bold mb-4">Features</h2>
         <ul className="list-disc list-inside mb-4">
-          <li>Answering questions using KMP or BM algorithm</li>
-          <li>Multiple chat rooms or tabs</li>
+          <li>Answering questions using KMP or BM string matching algorithm</li>
+          <li>Add and delete question to database</li>
           <li>Has calculator and date features</li>
+          <li>Multiple chat rooms or tabs</li>
         </ul>
         <h2 className="text-xl font-bold mb-4">Algorithm</h2>
         <p className="text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          hendrerit tortor et finibus tincidunt. Cras eget libero euismod,
-          sodales dui vel, fermentum est. Vestibulum iaculis lobortis leo,
-          vestibulum ornare dolor ultrices vitae. Aenean et eleifend arcu. Nulla
-          elementum neque vel tincidunt pretium.
+          This chatbot majorly operate using the Knuth-Morris-Pratt algorithm,
+          Boyer-Moore algorithm, and regular expression to be able to give you
+          an appropriate answer to all of your question.
         </p>
       </Card>
     </div>

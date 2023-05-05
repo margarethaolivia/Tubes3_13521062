@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# ChatDOA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Sebuah aplikasi chatbot yang menggunakan algoritma pencocokan string KMP dan BM <br>
+> Link deployment: https://chatdoa.vercel.app
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Deskripsi Program](#deskripsi-program)
+- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
+- [Fitur Program](#fitur-program)
+- [Tampilan Awal Program](#tampilan-awal-program)
+- [Cara Menjalankan Program](#cara-menjalankan-program)
+- [Anggota Kelompok](#anggota-kelompok)
 
-### `npm start`
+## Deskripsi Program
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ChatDOA adalah Sebuah aplikasi chatbot yang menggunakan algoritma pencocokan string Knuth-Morris-Pratt (KMP) dan Boyer-Moore (BM) dalam pencarian pertanyaan yang paling mirip dengan pertanyaan yang diberikan pengguna. Jika tidak ada satupun pertanyaan pada database yang exact match dengan pertanyaan pengguna melalui algoritma KMP ataupun BM, maka digunakan pertanyaan termirip dengan kesamaan setidaknya 90%. Apabila tidak ada pertanyaan yang kemiripannya di atas 90%, maka chatbot akan memberikan maksimum 3 pilihan pertanyaan yang paling mirip untuk dipilih oleh pengguna. Perhitungan tingkat kemiripan menggunakan algoritma Levenshtein Distance.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Teknologi yang Digunakan
 
-### `npm test`
+Aplikasi web yang dibangun menggunakan MERN stack, yaitu:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- MongoDB (database)
+- Express.js (backend)
+- React (frontend)
+- Node.js
 
-### `npm run build`
+## Fitur Program
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Berikut adalah fitur-fitur yang tersedia:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Pertanyaan teks (didapat dari database)
+- Kalkulator
+- Tanggal
+- Tambah pertanyaan dan jawaban ke database
+- Hapus pertanyaan dari database
+- History chat
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tampilan Awal Program
 
-### `npm run eject`
+<img src="doc/welcomePage.png"  width="600">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Cara Menjalankan Program
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Clone Repo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone repository dengan menuliskan command berikut
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+git clone git@github.com:margarethaolivia/Tubes3_13521062.git
+```
 
-## Learn More
+atau bila menggunakan https
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+git clone https://github.com/margarethaolivia/Tubes3_13521062.git
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Kemudian, masuk ke dalam direktori `src` repository
 
-### Code Splitting
+```sh
+cd Tubes3_13521062/src
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. Install Dependencies
 
-### Analyzing the Bundle Size
+Install semua dependencies yang dibutuhkan dengan menuliskan kedua command berikut
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+npm run install-server
+npm run install-client
+```
 
-### Making a Progressive Web App
+### 3. Jalankan Program
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Server-Side
 
-### Advanced Configuration
+Untuk menjalankan server, buat file `.env` terlebih dahulu di direktori `backend` yang berisi `MONGODB_URI`, yaitu URI dari MongoDB yang digunakan, serta `PORT`, yaitu port untuk menjalankan server di lokal. Setelah membuat file `.env`, server dapat dijalankan dengan menuliskan command berikut
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```sh
+npm run start-server
+```
 
-### Deployment
+Server akan berjalan pada `https://localhost:${PORT}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Client-Side
 
-### `npm run build` fails to minify
+Untuk menjalankan program pada sisi client dapat dilakukan dengan menuliskan command berikut
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+npm run start-client
+```
+
+Aplikasi akan berjalan pada `https://localhost:3000`
+
+## Anggota Kelompok
+
+| NIM      | Nama                             |
+| -------- | -------------------------------- |
+| 13521062 | Go Dillon Audris                 |
+| 13521070 | Akmal Mahardika Nurwahyu Pratama |
+| 13521071 | Margaretha Olivia Haryono        |
