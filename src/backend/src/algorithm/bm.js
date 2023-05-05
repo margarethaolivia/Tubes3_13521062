@@ -1,9 +1,22 @@
 /* ------------------------------- File : bm.js ------------------------------- */
 /*            Do the pattern-matching using Boyer-Moore algorithm               */
 
+function lastOccurBuilder(pattern) {
+    /* Return array storing index of last
+    occurrence of each ASCII char in pattern. */
+    var last = new Array(256) // create an array with length 256
+    for(let i=0; i < 256; i++) {
+        last[i] = -1 // initialize array
+    }
+    for (let i = 0; i < pattern.length; i++) {
+        last[pattern.charCodeAt(i)] = i // use charCodeAt() to get ASCII value
+    }
+    return last
+}
+
 function matchBM(text, pattern) {
-    text.toLowerCase()                      // Convert text to lowercase
-    pattern.toLowerCase()                   // Convert pattern to lowercase
+    text = text.toLowerCase()                      // Convert text to lowercase
+    pattern = pattern.toLowerCase()                   // Convert pattern to lowercase
     
     var lastOccur = lastOccurBuilder(pattern)
     var lengthText = text.length
@@ -41,17 +54,5 @@ function matchBM(text, pattern) {
     return -1
 }
 
-function lastOccurBuilder(pattern) {
-    /* Return array storing index of last
-    occurrence of each ASCII char in pattern. */
-    var last = new Array(256); // create an array with length 256
-    for(let i=0; i < 256; i++) {
-        last[i] = -1; // initialize array
-    }
-    for (let i = 0; i < pattern.length; i++) {
-        last[pattern.charCodeAt(i)] = i; // use charCodeAt() to get ASCII value
-    }
-    return last;
-}
 
 module.exports = {matchBM}
