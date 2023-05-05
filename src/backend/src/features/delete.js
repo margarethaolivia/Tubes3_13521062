@@ -4,7 +4,7 @@ async function deleteQuery(query, algorithmCode) {
     var indexStart = /pertanyaan/.exec(query).index + 10
     var questionWord = query.slice(indexStart, query.length).split(/\s+/).filter(word => word != "")
     
-    if (questionWord.length == 0 || answerWord.length == 0) {
+    if (questionWord.length == 0) {
         return "Mohon masukkan pertanyaan yang valid untuk dihapus"
     }
 
