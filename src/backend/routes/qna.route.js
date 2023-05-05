@@ -8,9 +8,7 @@ let qnaSchema = require("../models/qna.model");
 // CREATE qna
 router.route("/").post(async (req, res, next) => {
   try {
-    console.log(req.body);
     const data = await qnaSchema.create(req.body);
-    console.log(data);
     res.json(data);
   } catch (error) {
     next(error);

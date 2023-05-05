@@ -42,7 +42,6 @@ function App() {
     e.preventDefault();
     try {
       const response = await axios.post(`${API_URL}/tab`);
-      console.log(response.data);
       setNewTab(!newTab);
       setSend(!send);
     } catch (error) {
@@ -56,8 +55,6 @@ function App() {
       const responseHistory = await axios.delete(
         `${API_URL}/chat/delete/${id}`
       );
-      console.log(responseTab.data);
-      console.log(responseHistory.data);
       setNewTab(!newTab);
     } catch (error) {
       console.error(error.message);
@@ -183,7 +180,6 @@ function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
         question: question,
         algorithm: selectedAlgorithm,
       });
-      console.log(response.data);
       setSend(!send);
     } catch (error) {
       console.error(error.message);
@@ -237,8 +233,8 @@ function WelcomePage() {
         <h2 className="text-xl font-bold mb-4">Algorithm</h2>
         <p className="text-gray-700">
           This chatbot majorly operate using the Knuth-Morris-Pratt algorithm,
-          Boyer-Moore algorithm, and regular expression to be able to give
-          you an appropriate answer to all of your question.
+          Boyer-Moore algorithm, and regular expression to be able to give you
+          an appropriate answer to all of your question.
         </p>
       </Card>
     </div>
