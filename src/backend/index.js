@@ -5,13 +5,13 @@ const cors = require("cors");
 let bodyParser = require("body-parser");
 require("dotenv").config();
 
-const historyRoute = require("../backend/routes/history.route");
-const qnaRoute = require("../backend/routes/qna.route");
-const tabRoute = require("../backend/routes/tab.route");
+const historyRoute = require("./routes/history.route");
+const qnaRoute = require("./routes/qna.route");
+const tabRoute = require("./routes/tab.route");
 
 // middleware
 const corsOptions = {
-  origin: "http://localhost:3000", // frontend URI (ReactJS)
+  origin: ["https://chatdoa.vercel.app", "http://localhost:3000"], // frontend URI (ReactJS)
 };
 app.use(express.json());
 app.use(cors(corsOptions));

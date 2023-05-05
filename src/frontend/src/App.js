@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 
+const API_URL = "https://chatdoa-api.up.railway.app";
+
 function App() {
   const [chats, setChats] = useState([]);
   const [tabs, setTabs] = useState([]);
@@ -13,7 +15,7 @@ function App() {
 
   // Fetching message from backend on mount
   useEffect(() => {
-    fetch("http://localhost:4000/chat")
+    fetch(`${API_URL}/chat`)
       .then((res) => res.json())
       .then((data) => {
         setChats(data);
@@ -21,7 +23,7 @@ function App() {
   }, [send]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/tab")
+    fetch(`${API_URL}/tab`)
       .then((res) => res.json())
       .then((data) => {
         const tabs = data.map((tab) => ({
@@ -39,7 +41,7 @@ function App() {
   const handleNewTab = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/tab");
+      const response = await axios.post(`${API_URL}/tab`);
       console.log(response.data);
       setNewTab(!newTab);
       setSend(!send);
@@ -50,11 +52,9 @@ function App() {
 
   const handleDeleteTab = async (id) => {
     try {
-      const responseTab = await axios.delete(
-        `http://localhost:4000/tab/delete/${id}`
-      );
+      const responseTab = await axios.delete(`${API_URL}/tab/delete/${id}`);
       const responseHistory = await axios.delete(
-        `http://localhost:4000/chat/delete/${id}`
+        `${API_URL}/chat/delete/${id}`
       );
       console.log(responseTab.data);
       console.log(responseHistory.data);
@@ -174,7 +174,7 @@ function ChatWindow({ id, messages, send, setSend, selectedAlgorithm }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:4000/chat/${id}`, {
+      const response = await axios.post(`${API_URL}/chat/${id}`, {
         question: question,
         algorithm: selectedAlgorithm,
       });
